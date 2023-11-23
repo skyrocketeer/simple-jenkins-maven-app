@@ -4,8 +4,8 @@ pipeline {
         stage('Maven Install') {
             agent {
                 docker {
-                   registryUrl 'https://docker.io'
-                    registryCredentialsId 'docker-hub'
+                   registryUrl 'https://hub.docker.com/'
+                    // registryCredentialsId 'docker-hub'
                     image 'maven:3-jdk-8'
                     args '-v $HOME/.m2:/root/.m2'
                     reuseNode true
