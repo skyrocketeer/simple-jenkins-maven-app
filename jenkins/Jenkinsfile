@@ -1,14 +1,16 @@
 pipeline {
     agent none
-    stage('Docker') {
-        docker {
-            image 'docker'
-        }
-        steps {
-            sh 'docker -v'
-        }
-    }
     stages {
+        stage('Docker') {
+        // agent {
+        //     docker {
+        //        image 'docker'
+        //     }
+        // }
+        steps {
+                sh 'docker -v'
+            }
+        }
         stage('Maven Install') {
             agent {
                 docker {
