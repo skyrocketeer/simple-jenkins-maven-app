@@ -1,24 +1,13 @@
 pipeline {
     agent any
     stages {
-        stage('Docker') {
-        // agent {
-        //     docker {
-        //        image 'docker'
-        //     }
-        // }
-        steps {
-                sh 'docker -v'
-            }
-        }
         stage('Maven Install') {
             agent {
                 docker {
-                    image 'maven:3.9.5-eclipse-temurin-11'
-                    args '-v /root/.m2:/root/.m2'
-                    // Run the container on the node specified at the
-                    // top-level of the Pipeline, in the same workspace,
-                    // rather than on a new node entirely:
+                   registryUrl 'https://docker.io'
+                    registryCredentialsId 'docker-hub'
+                    image 'maven:3-jdk-8'
+                    args '-v $HOME/.m2:/root/.m2'
                     reuseNode true
                 }
             }
